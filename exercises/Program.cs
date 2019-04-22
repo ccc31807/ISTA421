@@ -4,80 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace progex_strsplit
+namespace progex13
 {
     class Program
     {
         static void Main(string[] args)
         {
-            /*************************
-             * read CSV with embedded commas
-             * parse CSV into separate fields and
-             * ignore commas within quoted string
-             * ***********************/
-            Console.WriteLine("Reading CSV with embedded commas");
-            List<string> myList = new List<string>();
-            string input1 = "\"a,b\",c";
-            myList.Add(input1);
-            string input2 = "\"Obama, Barack\",\"August 4, 1961\",\"Washington, D.C.\"";
-            myList.Add(input2);
-            string input3 = "\"Ft. Benning, Georgia\",32.3632N,84.9493W," +
-                "\"Ft. Stewart, Georgia\",31.8691N,81.6090W," +
-                "\"Ft. Gordon, Georgia\",33.4302N,82.1267W";
-            myList.Add(input3);
+            string plain_text = Util.GetPlainText();
+            string single_key = Util.GetSingleKey();
+            string multi_key = Util.GetMultiKey();
+            Console.WriteLine();
 
-            foreach (string s in myList)
-            {
-                Console.WriteLine($"Current input is {s}");
-                List<string> output = getCSV(s);
-                int len = output.Count;
-                Console.WriteLine($"This line has {len} fields. They are:");
-                foreach (string s1 in output)
-                    Console.WriteLine(s1);
-            }
-        }
+            Console.WriteLine($"You entered [{plain_text}] as plain text");
+            Console.WriteLine($"You entered [{single_key}] as your single key");
+            Console.WriteLine($"You entered [{multi_key}] as your multi key");
+            Console.WriteLine();
 
-        private static List<string> getCSV(string input)
-        {
-            //Console.WriteLine($"Inside method getCSV({input})");
-            int len = input.Length;
-            List<string> rv = new List<string>();
-            bool inQuote = false;
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < len; i++)
-            {
-                int charcode = (int)input[i];
-                //Console.WriteLine($"---{input[i]} {charcode} {inQuote} [{sb.ToString()}]");
-                //if out-quote and character is ", change to in-quote
-                if (inQuote == false && charcode == 34)
-                {
-                    inQuote = true;
-                }
-                //if in-quote and character is ", change to out-quote
-                else if (inQuote == true && charcode == 34)
-                {
-                    inQuote = false;
-                }
-                //if in-quote, append char to SB
-                else if (inQuote == true && charcode != 34)
-                {
-                    sb.Append(input[i]);
-                }
-                //if out-quote and comma, add SB to RV and clear SB
-                else if (inQuote == false && charcode == 44)
-                {
-                    rv.Add(sb.ToString());
-                    sb.Clear();
-                }
-                else if (inQuote == false && charcode != 44)
-                {
-                    sb.Append(input[i]);
-                }
-                else
-                    Console.WriteLine($"WARNING, ERROR, == {input[i]} {charcode} {inQuote} [{sb.ToString()}]");
-            }
-            rv.Add(sb.ToString());
-            return rv;
+            int[] clean_text = Util.Clean(plain_text);
+            int[] clean_skey = Util.Clean(single_key);
+            int[] clean_mkey = Util.Clean(multi_key);
+
+            string enc_single = Util.SingleEnc(clean_text, clean_skey);
+            string enc_multi = Util.MultiEnc(clean_text, clean_mkey);
+            string enc_conti = Util.ContiEnc(clean_text, clean_mkey);
+
+            Console.WriteLine($"Encrypted message with single key is [{enc_single}]");
+            Console.WriteLine($"Encrypted message with multi key is [{enc_multi}]");
+            Console.WriteLine($"Encrypted message with continuous key is [{enc_conti}]");
+            Console.WriteLine();
+
+            string dec_single = Util.SingleDec(enc_single, clean_skey);
+            string dec_multi = Util.MultiDec(enc_multi, clean_mkey);
+            string dec_conti = Util.ContiDec(enc_conti, clean_mkey);
+
+            Console.WriteLine($"Decrypted message with single key is [{dec_single}]");
+            Console.WriteLine($"Decrypted message with multi key is [{dec_multi}]");
+            Console.WriteLine($"Decrypted message with continuous key is [{dec_conti}]");
+            Console.WriteLine();
+
         }
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace DelLab03
 {
@@ -9,7 +9,7 @@ namespace DelLab03
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Delegates!");
+            Console.WriteLine("Delegate Lab 03");
             President first = new President
             {
                 FirstName = "George",
@@ -18,12 +18,19 @@ namespace DelLab03
                 Party = "none",
                 Year = 1788
             };
-            Console.WriteLine("=========non delegate demostration =========");
-            Console.WriteLine(first.ToString());
+            Console.WriteLine("========= three different ways =========");
             first.PrintFirstName(first);
             Console.WriteLine(first.GetFirstName());
             Console.WriteLine(first.FirstName);
             Console.WriteLine(first.FirstName.GetType());
+
+            Console.WriteLine("=========non delegate demostration =========");
+            Console.WriteLine(first.FirstName);
+            Console.WriteLine(first.LastName);
+            Console.WriteLine(first.State);
+            Console.WriteLine(first.Party);
+            Console.WriteLine(first.Year);
+            Console.WriteLine(first.ToString());
 
             Console.WriteLine("=========first delegate demostration =========");
             GetPresDel myFirstDel = new GetPresDel(first.GetFirstName);
@@ -36,6 +43,8 @@ namespace DelLab03
             Console.WriteLine(myFirstDel());
             myFirstDel = first.GetYear;
             Console.WriteLine(myFirstDel());
+            myFirstDel = first.ToString;
+            Console.WriteLine(myFirstDel());
 
             Console.WriteLine("=========second delegate demostration =========");
             PrintPresDel mySecondDel = new PrintPresDel(first.PrintFirstName);
@@ -47,6 +56,8 @@ namespace DelLab03
             mySecondDel = new PrintPresDel(first.PrintParty);
             mySecondDel(first);
             mySecondDel = new PrintPresDel(first.PrintYear);
+            mySecondDel(first);
+            mySecondDel = new PrintPresDel(first.PrintString);
             mySecondDel(first);
         }
     }
@@ -78,5 +89,7 @@ namespace DelLab03
         public void PrintParty(President p) => Console.WriteLine(p.Party);
         public void PrintYear(President p) => Console.WriteLine(p.Year.ToString());
 
+        public void PrintString(President p) =>
+            Console.WriteLine($"{FirstName} {LastName} from {State} was a {Party} elected in {Year}.");
     }
 }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace EventsLabStarter
 {
@@ -15,7 +15,7 @@ namespace EventsLabStarter
             d.ReturnFire("rifle fire");
 
             a.Attack("full auto rifle fire");
-            d.ReturnFire("grenade launcher");
+            d.ReturnFire("squad automatic weapon");
 
             string attackType = "heavy machine guns";
             a.Attack(attackType);
@@ -81,7 +81,7 @@ namespace EventsLabStarter
         }
         public static void BUFF(string w)
         {
-            Console.WriteLine($"BUFF: The Big Ugly Fat Fuggers just obliterated the {w}\n");
+            Console.WriteLine($"BUFF: The Big Ugly Fat Fuggers just obliterated the {w}. SHOCK AND AWE!!!\n");
         }
     }
 }

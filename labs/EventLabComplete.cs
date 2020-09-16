@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace EventsLabComplete
 {
@@ -15,7 +15,7 @@ namespace EventsLabComplete
             d.ReturnFire("rifle fire");
 
             a.Attack("full auto rifle fire");
-            d.ReturnFire("grenade launcher");
+            d.ReturnFire("squad automatic weapon");
 
             //7. subscribe to UnderAttackEvent
             d.UnderAttackEvent += Responder.HelpDefender;
@@ -61,14 +61,14 @@ namespace EventsLabComplete
             Console.WriteLine($"D. Help, we are under attack by {weapon}");
             //3. create call help method
             RaiseGetHelp(weapon);
-        //    if (v == "heavy machine guns")
-        //        Responder.MaDeuce();
-        //    if (v == "moms bringing reinforcements in trucks")
-        //        Responder.Predator();
-        //    if (v == "armored vehicles")
-        //        Responder.WartHog();
-        //    if (v == "SCUD missles")
-        //        Responder.BUFF();
+            //    if (v == "heavy machine guns")
+            //        Responder.MaDeuce();
+            //    if (v == "moms bringing reinforcements in trucks")
+            //        Responder.Predator();
+            //    if (v == "armored vehicles")
+            //        Responder.WartHog();
+            //    if (v == "SCUD missles")
+            //        Responder.BUFF();
         }
 
         public void ReturnFire(string s)
@@ -106,7 +106,7 @@ namespace EventsLabComplete
         }
         private static void BUFF(string w)
         {
-            Console.WriteLine($"BUFF: The Big Ugly Fat Fuggers just obliterated the {w}\n");
+            Console.WriteLine($"BUFF: The Big Ugly Fat Fuggers just obliterated the {w}. SHOCK AND AWE!\n");
         }
     }
 }

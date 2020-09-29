@@ -1,0 +1,16 @@
+CONVERT OCTAL TO HEX WITHOUT AN INTERMEDIATE STEP
+
+1. group the octal digits in groups of 4: [W, X, Y, Z] prepending 0 as needed
+   (each group of 4 octal digits maps to 3 hex digits)
+
+2. the first hex digit is  ((W * 2) + (X / 4)) % 16
+
+3. the second is               ((X * 4) + (Y / 2)) % 16
+
+4. the last digit is           ((Y * 8) + (Z / 1)) % 16
+
+5. to use the example of 347, my digits are [0, 3, 4, 7]
+      the first hex digit = ((0 * 2) + (3 / 4)) % 16 = (0 + 0) % 16 = 0
+      the second hex digit = ((3 * 4) + (4 / 2)) % 16 = (12 + 2) % 16 = 14 (E in hex notation)
+      the third hex digit = ((4 * 8) + (7 / 1)) % 16 = (32 + 7) % 16 = 7
+   so the result is 0E7

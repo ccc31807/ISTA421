@@ -83,6 +83,19 @@ namespace ArrayLabs
                 Console.Write($" {i} ");
             Console.WriteLine();
 
+            Console.WriteLine("11. Given myIntArr, 'flip' each element. Output should be " +
+                "{1, 0, 3, 2, 5, 4, ... }");
+            int[] a11 = Solutions.Lab011(myIntArr);
+            foreach (int i in a11)
+                Console.Write($" {i} ");
+            Console.WriteLine();
+
+            Console.WriteLine("12. Create a method that, given myIntArr, returns an array consisting " +
+                "of the sum of all prior elements, e.g. {0, 1, 3, 6, 10, ...} ");
+            int[] a12 = Solutions.Lab012(myIntArr);
+            foreach (int i in a12)
+                Console.Write($" {i} ");
+            Console.WriteLine();
         }
     }
 

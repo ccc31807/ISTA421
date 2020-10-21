@@ -52,9 +52,65 @@ namespace ArrayLabs
                 arr[i] = myIntArr[(i % 3) + 1];
             return arr;
         }
-    /***************************************************
-    * solutions 7 through 12 omitted
-    ****************************************************/
+
+        internal static int[] Lab07(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 0; i < myIntArr.Length; i++)
+                arr[i] = myIntArr[Math.Abs((i % 3) - 3)];
+            return arr;
+        }
+
+        internal static int[] Lab08(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            Array.Copy(myIntArr, arr, myIntArr.Length);
+            Random r = new Random();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int x = r.Next(arr.Length);
+                int temp = arr[i];
+                arr[i] = arr[x];
+                arr[x] = temp;
+            }
+            return arr;
+        }
+
+        internal static int[] Lab09(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 0; i < myIntArr.Length; i++)
+                arr[i] = (i + 5) % myIntArr.Length;
+            return arr;
+        }
+
+        internal static int[] Lab010(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 0; i < myIntArr.Length; i++)
+                arr[i] = (myIntArr.Length - 3 + i) %  myIntArr.Length;
+            return arr;
+        }
+
+        internal static int[] Lab011(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length - 1];
+            for (int i = 1; i < myIntArr.Length; i += 2)
+            {
+                int temp = myIntArr[i-1];
+                arr[i - 1] = myIntArr[i];
+                arr[i] = temp;
+            }
+            return arr;
+        }
+
+        internal static int[] Lab012(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 1; i < arr.Length; i++)
+                arr[i] = myIntArr[i] + arr[i - 1];
+            return arr;
+        }
     }
 }
 

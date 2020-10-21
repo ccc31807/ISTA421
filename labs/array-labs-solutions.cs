@@ -68,10 +68,11 @@ namespace ArrayLabs
             Random r = new Random();
             for (int i = 0; i < arr.Length; i++)
             {
-                int x = r.Next(arr.Length);
+                int place = r.Next(arr.Length);
+                //Console.WriteLine($"{i}. random place is {place}, swapping {arr[i]} with {arr[place]}");
                 int temp = arr[i];
-                arr[i] = arr[x];
-                arr[x] = temp;
+                arr[i] = arr[place];
+                arr[place] = temp;
             }
             return arr;
         }
@@ -80,11 +81,19 @@ namespace ArrayLabs
         {
             int[] arr = new int[myIntArr.Length];
             for (int i = 0; i < myIntArr.Length; i++)
+                arr[myIntArr[i]] = myIntArr[i];
+            return arr;
+        }
+
+        internal static int[] Lab10(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 0; i < myIntArr.Length; i++)
                 arr[i] = (i + 5) % myIntArr.Length;
             return arr;
         }
 
-        internal static int[] Lab010(int[] myIntArr)
+        internal static int[] Lab11(int[] myIntArr)
         {
             int[] arr = new int[myIntArr.Length];
             for (int i = 0; i < myIntArr.Length; i++)
@@ -92,7 +101,7 @@ namespace ArrayLabs
             return arr;
         }
 
-        internal static int[] Lab011(int[] myIntArr)
+        internal static int[] Lab12(int[] myIntArr)
         {
             int[] arr = new int[myIntArr.Length - 1];
             for (int i = 1; i < myIntArr.Length; i += 2)
@@ -104,11 +113,19 @@ namespace ArrayLabs
             return arr;
         }
 
-        internal static int[] Lab012(int[] myIntArr)
+        internal static int[] Lab13(int[] myIntArr)
         {
             int[] arr = new int[myIntArr.Length];
             for (int i = 1; i < arr.Length; i++)
                 arr[i] = myIntArr[i] + arr[i - 1];
+            return arr;
+        }
+
+        internal static int[] Lab14(int[] myIntArr)
+        {
+            int[] arr = new int[myIntArr.Length];
+            for (int i = 1; i < arr.Length; i++)
+                arr[i] = ((i % 11) * 2) + (i / 11);
             return arr;
         }
     }
